@@ -46,7 +46,7 @@ const Card = ({ product, handleAddToCart }) => {
               View Product
             </button>
           </Link>
-          {userInfo().role === "user" && product.quantity ? (
+          {userInfo() && userInfo().role !== "admin" && product.quantity ? (
             <>
               &nbsp;
               <button
