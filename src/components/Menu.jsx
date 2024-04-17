@@ -65,6 +65,7 @@ const Menu = () => {
             <li className="nav-item">
               <span
                 className="nav-link"
+                style={{ color: "gray", cursor: "pointer" }}
                 onClick={() => {
                   singout(() => {
                     navigate("/login");

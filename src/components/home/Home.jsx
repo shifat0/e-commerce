@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Layout from "../Layout";
 import Card from "./Card";
 import CheckBox from "./CheckBox";
@@ -12,6 +12,7 @@ import {
 } from "../../api/apiProduct";
 import { addToCart } from "../../api/apiOrder";
 import { isAuthenticated, userInfo } from "../../utils/auth";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -26,6 +27,16 @@ const Home = () => {
     category: [],
     price: [],
   });
+
+  const { search } = useLocation();
+
+  const userParams = new URLSearchParams(search);
+
+  const user = JSON.parse(userParams.get("user"));
+  // authenticate(user?.token, () => {})
+  useEffect(() => {
+    if (user) localStorage.setItem("jwt", JSON.stringify(user?.token));
+  }, []);
 
   useEffect(() => {
     getProducts(sortBy, order, limit)

@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { showError, showLoading } from "../../utils/messages";
 import { login } from "../../api/apiAuth";
 import { authenticate, userInfo } from "../../utils/auth";
+import axios from "axios";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -105,6 +111,13 @@ const Login = () => {
       {showError(error, error)}
       <h3>Login Here,</h3>
       <hr />
+      <Link
+        to="http://localhost:5000/auth/google"
+        type="button"
+        className="btn btn-primary"
+      >
+        Sign in with google
+      </Link>
       {signInForm()}
       <hr />
     </section>
