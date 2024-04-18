@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import Layout from "../Layout";
 import Card from "./Card";
 import CheckBox from "./CheckBox";
 import RadioBox from "./RadioBox";
@@ -34,9 +33,9 @@ const Home = () => {
 
   const user = JSON.parse(userParams.get("user"));
   // authenticate(user?.token, () => {})
-  useEffect(() => {
+  useMemo(() => {
     if (user) localStorage.setItem("jwt", JSON.stringify(user?.token));
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     getProducts(sortBy, order, limit)

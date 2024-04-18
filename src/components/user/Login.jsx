@@ -111,13 +111,30 @@ const Login = () => {
       {showError(error, error)}
       <h3>Login Here,</h3>
       <hr />
-      <Link
-        to="http://localhost:5000/auth/google"
-        type="button"
-        className="btn btn-primary"
-      >
-        Sign in with google
-      </Link>
+      <div className="d-flex flex-column">
+        <Link
+          to="http://localhost:5000/auth/google"
+          type="button"
+          className="btn btn-secondary d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="/google-icon.png"
+            style={{ height: "20px", width: "20px", marginRight: "15px" }}
+          />
+          <span>Sign in with google</span>
+        </Link>
+        <Link
+          to="http://localhost:5000/auth/facebook"
+          type="button"
+          className="btn btn-primary my-4 d-flex justify-content-center align-items-center"
+        >
+          <img
+            src="/facebook-logo.png"
+            style={{ height: "20px", width: "20px", marginRight: "15px" }}
+          />
+          <span>Sign in with Facebook</span>
+        </Link>
+      </div>
       {signInForm()}
       <hr />
     </section>
