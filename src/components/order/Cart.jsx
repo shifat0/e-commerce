@@ -110,7 +110,7 @@ const Cart = () => {
                     Continue Shoping
                   </button>
                 </Link>
-                <Link to="/shipping" className="btn btn-success mr-4">
+                <Link to="/user/shipping" className="btn btn-success mr-4">
                   Proceed To Checkout
                 </Link>
               </td>

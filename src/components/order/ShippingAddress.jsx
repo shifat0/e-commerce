@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getProfile, updateProfile } from "../../api/apiOrder";
 import { userInfo } from "../../utils/auth";
 
@@ -14,6 +14,8 @@ const ShippingAddress = ({ history }) => {
   });
   const [disabled, setDisabled] = useState(false);
   const [redirect, setRedirect] = useState(false);
+
+  const navigate = useNavigate();
 
   const { phone, address1, address2, city, postcode, country } = values;
 
@@ -114,7 +116,7 @@ const ShippingAddress = ({ history }) => {
   return (
     <>
       <section>
-        {redirect ? history.push("/checkout") : ""}
+        {redirect ? navigate("/user/checkout") : ""}
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">

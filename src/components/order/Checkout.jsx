@@ -107,7 +107,7 @@ const Checkout = () => {
               </div>
               <br />
               <p>
-                <Link className="btn btn-warning btn-md" to="/payment">
+                <Link className="btn btn-warning btn-md" to="/user/payment">
                   Make Payment
                 </Link>
               </p>

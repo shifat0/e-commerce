@@ -17,6 +17,7 @@ import Checkout from "../components/order/Checkout";
 import AdminDashboard from "../components/admin/AdminDashboard";
 import CreateCategory from "../components/admin/CreateCategory";
 import CreateProduct from "../components/admin/CreateProduct";
+import Payment from "../components/order/Payment";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -56,6 +57,14 @@ export const router = createBrowserRouter(
           element={
             <PrivateRoute>
               <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="payment"
+          element={
+            <PrivateRoute>
+              <Payment />
             </PrivateRoute>
           }
         />
