@@ -18,7 +18,7 @@ const CreateProduct = () => {
     disabled: false,
     formData: "",
   });
-
+  console.log(values);
   const {
     name,
     description,
@@ -65,6 +65,7 @@ const CreateProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     setValues({
       ...values,
       error: false,
@@ -87,6 +88,7 @@ const CreateProduct = () => {
           success: true,
           error: false,
         });
+        console.log(response);
       })
       .catch((error) => {
         let errMsg = "Something went wrong!";
