@@ -18,6 +18,12 @@ const orderFilters = [
   { id: 2, name: "descending", value: "desc" },
 ];
 
+const sortByFilters = [
+  { id: 1, name: "price" },
+  { id: 2, name: "sold" },
+  { id: 3, name: "review" },
+];
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -128,20 +134,35 @@ const Home = () => {
           </div>
           <div className="col-sm-3">
             <h5>Filter By Order:</h5>
-            <div className="row">
-              <select
-                name="order"
-                style={{ textTransform: "capitalize" }}
-                onChange={(e) => setOrder(e.target.value)}
-              >
-                <option value="">Select a option</option>
-                {orderFilters.map((orderFilter) => (
-                  <option key={orderFilter.id} value={orderFilter.value}>
-                    {orderFilter.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <select
+              name="order"
+              className="row"
+              style={{ textTransform: "capitalize" }}
+              onChange={(e) => setOrder(e.target.value)}
+            >
+              <option value="">Select a option</option>
+              {orderFilters.map((orderFilter) => (
+                <option key={orderFilter.id} value={orderFilter.value}>
+                  {orderFilter.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="col-sm-3">
+            <h5>Sort By:</h5>
+            <select
+              name="sortBy"
+              className="row"
+              style={{ textTransform: "capitalize" }}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value="">Select a option</option>
+              {sortByFilters.map((sortByFilter) => (
+                <option key={sortByFilter.id} value={sortByFilter.name}>
+                  {sortByFilter.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </>
