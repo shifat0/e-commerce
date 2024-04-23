@@ -13,12 +13,17 @@ import { addToCart } from "../../api/apiOrder";
 import { isAuthenticated, userInfo } from "../../utils/auth";
 import { useLocation } from "react-router-dom";
 
+const orderFilters = [
+  { id: 1, name: "ascending", value: "asc" },
+  { id: 2, name: "descending", value: "desc" },
+];
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [limit, setLimit] = useState(30);
   const [skip, setSkip] = useState(0);
-  const [order, setOrder] = useState("desc");
+  const [order, setOrder] = useState("");
   const [sortBy, setSortBy] = useState("createdAt");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -45,7 +50,7 @@ const Home = () => {
     getCategories()
       .then((response) => setCategories(response.data))
       .catch((err) => setError("Failed to load categories!"));
-  }, []);
+  }, [order, sortBy, limit]);
 
   const handleAddToCart = (product) => () => {
     if (isAuthenticated()) {
@@ -71,6 +76,7 @@ const Home = () => {
 
   const handleFilters = (myfilters, filterBy) => {
     const newFilters = { ...filters };
+
     if (filterBy === "category") {
       newFilters[filterBy] = myfilters;
     }
@@ -84,6 +90,10 @@ const Home = () => {
         }
       }
       newFilters[filterBy] = arr;
+    }
+
+    if (filterBy === "order") {
+      newFilters[filterBy] = myfilters;
     }
 
     setFilters(newFilters);
@@ -114,6 +124,23 @@ const Home = () => {
                 prices={prices}
                 handleFilters={(myfilters) => handleFilters(myfilters, "price")}
               />
+            </div>
+          </div>
+          <div className="col-sm-3">
+            <h5>Filter By Order:</h5>
+            <div className="row">
+              <select
+                name="order"
+                style={{ textTransform: "capitalize" }}
+                onChange={(e) => setOrder(e.target.value)}
+              >
+                <option value="">Select a option</option>
+                {orderFilters.map((orderFilter) => (
+                  <option key={orderFilter.id} value={orderFilter.value}>
+                    {orderFilter.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
