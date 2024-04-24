@@ -27,8 +27,8 @@ const sortByFilters = [
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [limit, setLimit] = useState(30);
   const [skip, setSkip] = useState(0);
+  const [limit, setLimit] = useState(4);
   const [order, setOrder] = useState("");
   const [sortBy, setSortBy] = useState("createdAt");
   const [error, setError] = useState(false);
@@ -37,8 +37,11 @@ const Home = () => {
     category: [],
     price: [],
   });
+  const [loading, setLoading] = useState(false);
 
   const { search } = useLocation();
+
+  useMemo(() => setLimit((prev) => prev + skip), [skip]);
 
   const userParams = new URLSearchParams(search);
   const searchedProduct = userParams.get("search") || "";
@@ -50,8 +53,12 @@ const Home = () => {
   }, [user]);
 
   useEffect(() => {
+    setLoading(true);
     getProducts(sortBy, order, limit)
-      .then((response) => setProducts(response.data))
+      .then((response) => {
+        setProducts(response.data);
+        setLoading(false);
+      })
       .catch((err) => setError("Failed to load products!"));
 
     getCategories()
@@ -192,6 +199,12 @@ const Home = () => {
               />
             ))}
       </div>
+      <button
+        className="btn btn-success d-block mx-auto my-5"
+        onClick={() => setSkip(5)}
+      >
+        {loading ? "Loading..." : "Load More"}
+      </button>
     </section>
   );
 };
