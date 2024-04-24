@@ -17,7 +17,7 @@ const Menu = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`?search=${searchValue}`);
+    navigate(`/?search=${searchValue}`);
   };
 
   const handleChange = (e) => setSearchValue(e.target.value);
