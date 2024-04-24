@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { userInfo } from "../../utils/auth";
+import { useEffect, useState } from "react";
+import { getOrderOfUser } from "../../api/apiOrder";
 
 const Dashboard = () => {
-  const { name, email, role } = userInfo();
+  const [PurchasedProducts, setPurchasedProducts] = useState([]);
+  const { name, email, role, token, _id } = userInfo();
+  console.log(PurchasedProducts);
+  useEffect(() => {
+    getOrderOfUser(token, _id).then((response) =>
+      setPurchasedProducts(response.data)
+    );
+  }, []);
+
   const UserLinks = () => {
     return (
       <div className="card">
@@ -27,7 +37,26 @@ const Dashboard = () => {
     <div className="card mb-5">
       <h3 className="card-header">Purchase History</h3>
       <ul className="list-group">
-        <li className="list-group-item">History</li>
+        {PurchasedProducts.map((product) => (
+          <li key={product._id} className="list-group-item d-flex flex-column">
+            <span>Name: {name}</span>
+            <span>
+              Address: {product.address.address1 + product.address.city}
+            </span>
+            <span>Phone: {product.address.phone}</span>
+            <div className="d-flex flex-column ">
+              Ordered Items:
+              {product.cartItems.map((item) => (
+                <div className="ml-4 d-flex flex-column">
+                  <span>product: {item.product}</span>
+                  <span>price: {item.price}</span>
+                  <span>count: {item.count}</span>
+                </div>
+              ))}
+            </div>
+            <span>Status: {product.status}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -59,3 +59,11 @@ export const initPayment = (token) => {
     },
   });
 };
+
+export const getOrderOfUser = (token, userId) => {
+  return axios.get(`${API}/order/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
