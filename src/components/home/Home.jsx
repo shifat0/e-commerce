@@ -41,6 +41,7 @@ const Home = () => {
   const { search } = useLocation();
 
   const userParams = new URLSearchParams(search);
+  const searchedProduct = userParams.get("search") || "";
 
   const user = JSON.parse(userParams.get("user"));
   // authenticate(user?.token, () => {})
@@ -179,13 +180,17 @@ const Home = () => {
       <h4 className="mt-5 mb-3">Products</h4>
       <div className="row">
         {products &&
-          products.map((product) => (
-            <Card
-              product={product}
-              key={product._id}
-              handleAddToCart={handleAddToCart(product)}
-            />
-          ))}
+          products
+            .filter((product) =>
+              product.name.toLowerCase().includes(searchedProduct.toLowerCase())
+            )
+            .map((product) => (
+              <Card
+                product={product}
+                key={product._id}
+                handleAddToCart={handleAddToCart(product)}
+              />
+            ))}
       </div>
     </section>
   );

@@ -1,7 +1,9 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { singout, isAuthenticated, userInfo } from "../utils/auth";
+import { useState } from "react";
 
 const Menu = () => {
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
   const pathName = useLocation().pathname;
 
@@ -12,6 +14,13 @@ const Menu = () => {
       return { color: "grey" };
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`?search=${searchValue}`);
+  };
+
+  const handleChange = (e) => setSearchValue(e.target.value);
 
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -79,10 +88,15 @@ const Menu = () => {
           </>
         )}
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form
+        className="form-inline my-2 my-lg-0"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
         <input
           className="form-control mr-sm-2"
           type="search"
+          name="search"
           placeholder="Search"
           aria-label="Search"
         />
