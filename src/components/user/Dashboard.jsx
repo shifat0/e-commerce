@@ -6,7 +6,7 @@ import { getOrderOfUser } from "../../api/apiOrder";
 const Dashboard = () => {
   const [PurchasedProducts, setPurchasedProducts] = useState([]);
   const { name, email, role, token, _id } = userInfo();
-  console.log(PurchasedProducts);
+
   useEffect(() => {
     getOrderOfUser(token, _id).then((response) =>
       setPurchasedProducts(response.data)
@@ -48,13 +48,13 @@ const Dashboard = () => {
               Ordered Items:
               {product.cartItems.map((item) => (
                 <div className="ml-4 d-flex flex-column">
-                  <span>product: {item.product}</span>
+                  <span>product: {item.product.name}</span>
                   <span>price: {item.price}</span>
                   <span>count: {item.count}</span>
                 </div>
               ))}
             </div>
-            <span>Status: {product.status}</span>
+            <span>Payment Status: {product.status}</span>
           </li>
         ))}
       </ul>
