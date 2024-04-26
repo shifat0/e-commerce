@@ -37,7 +37,7 @@ const Dashboard = () => {
     <div className="card mb-5">
       <h3 className="card-header">Purchase History</h3>
       <ul className="list-group">
-        {PurchasedProducts.map((product) => (
+        {[...PurchasedProducts].reverse().map((product) => (
           <li key={product._id} className="list-group-item d-flex flex-column">
             <span>Name: {name}</span>
             <span>
@@ -47,7 +47,7 @@ const Dashboard = () => {
             <div className="d-flex flex-column ">
               Ordered Items:
               {product.cartItems.map((item) => (
-                <div className="ml-4 d-flex flex-column">
+                <div key={item._id} className="ml-4 d-flex flex-column">
                   <span>product: {item.product.name}</span>
                   <span>price: {item.price}</span>
                   <span>count: {item.count}</span>

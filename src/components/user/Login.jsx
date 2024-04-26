@@ -113,7 +113,8 @@ const Login = () => {
       <hr />
       <div className="d-flex flex-column">
         <Link
-          to="http://localhost:5000/auth/google"
+          // to="http://localhost:5000/auth/google"
+          to="https://e-commerce-server-unig.onrender.com/auth/google"
           type="button"
           className="btn btn-secondary d-flex justify-content-center align-items-center"
         >
@@ -124,7 +125,8 @@ const Login = () => {
           <span>Sign in with google</span>
         </Link>
         <Link
-          to="http://localhost:5000/auth/facebook"
+          // to="http://localhost:5000/auth/facebook"
+          to="https://e-commerce-server-unig.onrender.com/auth/facebook"
           type="button"
           className="btn btn-primary my-4 d-flex justify-content-center align-items-center"
         >
