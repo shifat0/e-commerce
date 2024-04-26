@@ -18,6 +18,7 @@ import AdminDashboard from "../components/admin/AdminDashboard";
 import CreateCategory from "../components/admin/CreateCategory";
 import CreateProduct from "../components/admin/CreateProduct";
 import Payment from "../components/order/Payment";
+import Coupons from "../components/user/Coupons";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,14 @@ export const router = createBrowserRouter(
           element={
             <PrivateRoute>
               <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="coupons"
+          element={
+            <PrivateRoute>
+              <Coupons />
             </PrivateRoute>
           }
         />

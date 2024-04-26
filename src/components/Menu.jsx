@@ -61,15 +61,27 @@ const Menu = () => {
               </Link>
             </li>
             {userInfo().role === "user" && (
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/user/cart"
-                  style={isActive("/user/cart")}
-                >
-                  Cart
-                </Link>
-              </li>
+              <>
+                {" "}
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/user/cart"
+                    style={isActive("/user/cart")}
+                  >
+                    Cart
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    to="/user/coupons"
+                    style={isActive("/user/coupons")}
+                  >
+                    Coupons
+                  </Link>
+                </li>
+              </>
             )}
             <li className="nav-item">
               <span
