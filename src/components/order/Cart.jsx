@@ -10,6 +10,11 @@ import { userInfo } from "../../utils/auth";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [coupon, setCoupon] = useState(
+    localStorage.getItem("coupon")
+      ? JSON.parse(localStorage.getItem("coupon"))
+      : null
+  );
 
   const loadCart = () => {
     getCartItems(userInfo().token)
@@ -57,6 +62,11 @@ const Cart = () => {
       .catch(() => {});
   };
 
+  const removeCoupon = () => {
+    localStorage.removeItem("coupon");
+    setCoupon(null);
+  };
+
   return (
     <section>
       <nav aria-label="breadcrumb">
@@ -96,10 +106,34 @@ const Cart = () => {
                 removeItem={removeItem(item)}
               />
             ))}
+            {coupon && (
+              <tr>
+                <th scope="row" />
+                <td>Coupon</td>
+                <td colSpan={2}>{coupon.name}</td>
+                <td align="right">৳ {coupon.discount} </td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={removeCoupon}
+                  >
+                    Remove Coupon
+                  </button>
+                </td>
+                <td />
+              </tr>
+            )}
             <tr>
               <th scope="row" />
               <td colSpan={3}>Total</td>
-              <td align="right">৳ {getCartTotal()} </td>
+              <td align="right">
+                ৳{" "}
+                {coupon
+                  ? getCartTotal() - coupon.discount <= 0
+                    ? 0
+                    : getCartTotal() - coupon.discount
+                  : getCartTotal()}{" "}
+              </td>
               <td />
             </tr>
             <tr>
