@@ -19,6 +19,7 @@ import CreateCategory from "../components/admin/CreateCategory";
 import CreateProduct from "../components/admin/CreateProduct";
 import Payment from "../components/order/Payment";
 import Coupons from "../components/user/Coupons";
+import CreateCoupon from "../components/admin/CreateCoupon";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -103,6 +104,14 @@ export const router = createBrowserRouter(
           element={
             <AdminRoute>
               <CreateProduct />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="create/coupon"
+          element={
+            <AdminRoute>
+              <CreateCoupon />
             </AdminRoute>
           }
         />

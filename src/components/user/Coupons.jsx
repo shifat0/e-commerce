@@ -18,6 +18,11 @@ export default function Coupons() {
     setSelectedCoupon(coupon);
   };
 
+  const handleRemoveCoupon = () => {
+    localStorage.removeItem("coupon");
+    setSelectedCoupon(null);
+  };
+
   return (
     <div className="card mb-5">
       <h3 className="card-header">Coupons ({couponList.length})</h3>
@@ -42,13 +47,10 @@ export default function Coupons() {
               >
                 Add this coupon
               </button>
-              {selectedCoupon._id === coupon._id && (
+              {selectedCoupon && selectedCoupon?._id === coupon._id && (
                 <button
-                  onClick={() => handleCoupon(coupon)}
+                  onClick={handleRemoveCoupon}
                   className="btn btn-danger ml-4"
-                  style={
-                    selectedCoupon && { cursor: "not-allowed", opacity: "30%" }
-                  }
                 >
                   Remove this coupon
                 </button>
