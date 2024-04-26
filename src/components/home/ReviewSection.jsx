@@ -21,6 +21,7 @@ export default function ReviewSection({ id, product }) {
         review: feedback,
       });
       setSuccess(response.data.message);
+      getReviews(id).then((res) => setFeedbackList(res.data.data));
       setFeedback("");
     } catch (err) {
       setError(err.response.data);
@@ -57,7 +58,7 @@ export default function ReviewSection({ id, product }) {
 
       {/* List of Feedbacks */}
       <div className="card my-5">
-        <h3 className="card-header">Feedbacks</h3>
+        <h3 className="card-header">Feedbacks ({feedbackList.length})</h3>
         <ul className="list-group mt-4">
           {feedbackList ? (
             feedbackList.map((feedback) => (
