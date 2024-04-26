@@ -5,6 +5,7 @@ import { getProductDetails } from "../../api/apiProduct";
 import { showSuccess, showError } from "../../utils/messages";
 import { addToCart } from "../../api/apiOrder";
 import { isAuthenticated, userInfo } from "../../utils/auth";
+import ReviewSection from "./ReviewSection";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
@@ -95,6 +96,8 @@ const ProductDetails = () => {
           )}
         </div>
       </div>
+      {/* Feedback / Review */}
+      <ReviewSection id={id} product={product} />
     </section>
   );
 };
